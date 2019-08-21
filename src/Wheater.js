@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container } from './layout';
+import { Container, Loading } from './layout';
 
 /**https://escoladejavascript.com/apis-externas-no-react/?fbclid=IwAR3jJd2MPiF-y1CV88GRN9xlppDpCYreiWNvp2Ln3I0LU5Bq1jSpQTE6QWc */
 
@@ -59,7 +59,7 @@ export default function Wheater () {
                 </>
             ):(
                 <>
-                    <div>Loading ...</div>
+                    <Loading type="bars" color={"#000000"}></Loading>
                 </>
             )}                     
         </Container>

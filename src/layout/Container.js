@@ -1,13 +1,14 @@
 import React from 'react';
+import { Switch, Route } from "react-router-dom";
 
-export default function Container({title, children}) {
+export default function Container({menus}) {
     return (
-        <div className="container">      
+        <div className="container"> 
             <div className="jumbotron">
-                <h1>{title || "undefined"}</h1>
-                <hr/>
-                {children}
-            </div>
+                <Switch> 
+                    {menus.map((item ,index)=> (<Route key={index} exact path={item.link} component={item.component} />))}
+                </Switch>          
+            </div>       
         </div>
     );
 }

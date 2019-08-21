@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Container } from './layout';
 import { isInt } from './utils';
+import { Header } from './layout';
 
 export default function Counter() {
 
@@ -33,7 +33,8 @@ export default function Counter() {
     },[edit]);
 
     return (
-        <Container title="Counter Page">            
+        <>
+            <Header title="Counter"></Header>                   
             <div className="text-center row">
                 <div className="col-sm-12" onClick={onClickSequence} style={{marginTop:'1px'}}>
                     <div className="well well-lg" style={{height:'95px'}}>
@@ -76,7 +77,7 @@ export default function Counter() {
                             <span className="glyphicon glyphicon-wrench"></span> Change Number
                     </button>
                 </div>
-            </div>
-        </Container>
+            </div>    
+        </>    
     )
 }

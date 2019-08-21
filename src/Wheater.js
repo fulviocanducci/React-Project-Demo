@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Loading } from './layout';
+import { Loading, Header } from './layout';
 
 /**https://escoladejavascript.com/apis-externas-no-react/?fbclid=IwAR3jJd2MPiF-y1CV88GRN9xlppDpCYreiWNvp2Ln3I0LU5Bq1jSpQTE6QWc */
 
@@ -41,10 +41,11 @@ export default function Wheater () {
     }
 
     return (
-        <Container title="Wheater Local">              
+        <>  
+            <Header title="Wheater Local"></Header>            
             {weather ? (
                 <>
-                    <h3>Clima nas suas Coordenadas ({weather['weather'][0]['description']})</h3>                    
+                    <h5>Clima nas suas Coordenadas ({weather['weather'][0]['description']})</h5>                    
                     <ul className="list-group">
                         <li className="list-group-item"><mark>Cidade:</mark> {weather['name']}</li>
                         <li className="list-group-item"><mark>Temperatura atual:</mark> {weather['main']['temp']}°</li>
@@ -62,6 +63,6 @@ export default function Wheater () {
                     <Loading type="bars" color={"#000000"}></Loading>
                 </>
             )}                     
-        </Container>
+        </>
     )
 }

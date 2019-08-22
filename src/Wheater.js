@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Loading, Header } from './layout';
+import { WeaterRequestGet } from './libraries';
 
-/**https://escoladejavascript.com/apis-externas-no-react/?fbclid=IwAR3jJd2MPiF-y1CV88GRN9xlppDpCYreiWNvp2Ln3I0LU5Bq1jSpQTE6QWc */
-
-export default function Wheater () {
-    const apiKey = 'd75b0d3d87442a5ae74622b37bde1467';
+export default function Wheater () {    
     const [location, setLocation] = useState(false);
     const [weather, setWeather] = useState(false);
     
     useEffect(() => {
         const sucessCurrentPosition = position => {
             setLocation(position.coords);
-            getWeather(position.coords.latitude, position.coords.longitude);
+            loadWeather(position.coords.latitude, position.coords.longitude);
         };
         const errorCurrentPosition = error => {
             console.log(error);
@@ -24,20 +21,10 @@ export default function Wheater () {
 
     },[weather]);
 
-    function getWeather(latitude, longitude) {       
-        const params = {
-            lat: latitude,
-            lon: longitude,
-            appid: apiKey,
-            lang: 'pt',
-            units: 'metric'
-        }  
-        axios.get('https://api.openweathermap.org/data/2.5/weather', {
-            params
-        })        
-        .then(response => {            
-            setWeather(response.data);            
-        })
+    function loadWeather(latitude, longitude) {       
+        WeaterRequestGet(latitude, longitude)
+            .then(response => { setWeather(response.data);})
+            .catch(error => console.log(error));
     }
 
     return (

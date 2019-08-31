@@ -24,43 +24,43 @@ export default function Dollar() {
         {Object.keys(results).length > 0 ?
             (
                 <>  
-                    <table className="table">
+                    <table className="table is-bordered is-fullwidth">
                         <thead>
                             <tr>
-                                <th className="text-center" colSpan="3">Name</th>
+                                <th className="has-text-centered" colSpan="3">Name</th>
                             </tr>    
                             <tr>
-                                <th className="text-center">Code</th>
-                                {/*<th className="text-center">In</th>*/}
-                                <th className="text-center">Low</th>
-                                <th className="text-center">High</th>
-                                {/*<th className="text-center">Ask</th>
-                                <th className="text-center">Bid</th>
-                                <th className="text-center">Change</th>
-                                <th className="text-center">Date</th>
-                                <th className="text-center">Time</th>
-                                <th className="text-center">vBid</th>*/}                               
+                                <th className="has-text-centered">Code</th>
+                                {/*<th className="has-text-centered">In</th>*/}
+                                <th className="has-text-centered">Low</th>
+                                <th className="has-text-centered">High</th>
+                                {/*<th className="has-text-centered">Ask</th>
+                                <th className="has-text-centered">Bid</th>
+                                <th className="has-text-centered">Change</th>
+                                <th className="has-text-centered">Date</th>
+                                <th className="has-text-centered">Time</th>
+                                <th className="has-text-centered">vBid</th>*/}                               
                             </tr>
                         </thead>
                         <tbody>
                         {Object.keys(results).map((item, index) => (
                             <React.Fragment key={index}>
                             <tr className={index % 2 === 0?'warning':'success'}>
-                                <td className="col-md-4 text-center" colSpan="3">
+                                <td className="text-center" colSpan="3">
                                 <strong>{ results[item].name}</strong>
                                 </td>
                             </tr>
                             <tr className={index % 2 === 0?'warning':'success'}>
-                                <td className="col-md-4 text-center">{ results[item].code}</td>
-                                {/*<td className="col-md-4 text-right">{ results[item].codein}</td>*/}
-                                <td className="col-md-4 text-right">{ results[item].low}</td>
-                                <td className="col-md-4 text-right">{ results[item].high}</td>
-                                {/*<td className="col-md-4 text-right">{ results[item].ask}</td>
-                                <td className="col-md-4 text-right">{ results[item].bid}</td>                                
-                                <td className="col-md-4 text-right">{ results[item].pctChange}</td>
-                                <td className="col-md-4 text-right">{ results[item].timestamp}</td>
-                                <td className="col-md-4 text-right">{ results[item].varBid}</td>
-                                <td className="col-md-4 text-center">
+                                <td className="text-center">{ results[item].code}</td>
+                                {/*<td className="has-text-right">{ results[item].codein}</td>*/}
+                                <td className="has-text-right">{ results[item].low}</td>
+                                <td className="has-text-right">{ results[item].high}</td>
+                                {/*<td className="has-text-right">{ results[item].ask}</td>
+                                <td className="has-text-right">{ results[item].bid}</td>                                
+                                <td className="has-text-right">{ results[item].pctChange}</td>
+                                <td className="has-text-right">{ results[item].timestamp}</td>
+                                <td className="has-text-right">{ results[item].varBid}</td>
+                                <td className="has-text-centered">
                                     <Moment format="YYYY/MM/DD HH:mm">
                                         { results[item].create_date}
                                     </Moment>                            

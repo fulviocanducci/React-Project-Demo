@@ -19,8 +19,14 @@ export default function Counter() {
         }
     }
 
-    function handlerKeyPressEdit(e) {
+    function handlerKeyPressEdit(e) {        
         if (e.key === "Enter") {
+            setEdit(false);
+        }
+    }
+
+    function handlerKeyUpEdit(e) {        
+        if (e.key === 'Escape') {
             setEdit(false);
         }
     }
@@ -35,46 +41,60 @@ export default function Counter() {
     return (
         <>
             <Header title="Counter"></Header>                   
-            <div className="text-center row">
-                <div className="col-sm-12" onClick={onClickSequence} style={{marginTop:'1px'}}>
+            <div className="columns">
+                <div className="column" onClick={onClickSequence} style={{marginTop:'1px'}}>
                     <div className="well well-lg" style={{height:'95px'}}>
                         {edit ? (
                             <input 
                                 ref={editInput}
                                 type="text" 
                                 name="edit"
-                                className="form-control input-lg"
+                                className="input"
                                 value={sequence} 
                                 onChange={setSequenceChange}
                                 onKeyPress={handlerKeyPressEdit}
+                                onKeyUp={handlerKeyUpEdit}
                                 onBlur={e => setEdit(false)}/>
                         ) : (
-                            <h3>{sequence}</h3>
+                            <div className="title has-text-centered">
+                                <h3>{sequence}</h3>
+                            </div>
                         )}   
                     </div>                                     
                 </div>
-                <div className="col-sm-6" style={{marginTop:'5px'}}>
+            </div>
+            <div className="columns">
+                <div className="column" style={{marginTop:'3px'}}>
                     <button 
                         disabled={edit || sequence === 0}
-                        className="btn btn-info btn-block" 
+                        className="button is-fullwidth" 
                         onClick={() => setSequence(sequence - 1)}>
-                            <span className="glyphicon glyphicon-chevron-left"></span> Decrement
+                            <span className="icon is-small">
+                                <i className="fas fa-fast-backward"></i>
+                            </span> 
+                            <span>Decrement</span>
                     </button>
                 </div>
-                <div className="col-sm-6" style={{marginTop:'5px'}}>
+                <div className="column" style={{marginTop:'3px'}}>
                     <button 
                         disabled={edit}
-                        className="btn btn-primary btn-block" 
-                        onClick={() => setSequence(sequence + 1)}>
-                            Increment <span className="glyphicon glyphicon-chevron-right"></span>
+                        className="button is-fullwidth" 
+                        onClick={() => setSequence(sequence + 1)}>                            
+                            <span>Increment</span>
+                            <span className="icon is-small">
+                                <i className="fas fa-fast-forward"></i>
+                            </span>                             
                     </button>
                 </div>                
-                <div className="col-sm-12" style={{marginTop:'5px'}}>
+                <div className="column" style={{marginTop:'3px'}}>
                     <button 
                         disabled={edit}
-                        className="btn btn-warning btn-block" 
+                        className="button is-fullwidth" 
                         onClick={() => setEdit(true)}>
-                            <span className="glyphicon glyphicon-wrench"></span> Change Number
+                            <span className="icon is-small">
+                                <i className="fas fa-edit"></i>
+                            </span> 
+                            <span>Change Number</span>
                     </button>
                 </div>
             </div>    

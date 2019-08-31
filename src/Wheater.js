@@ -32,17 +32,19 @@ export default function Wheater () {
             <Header title="Wheater Local"></Header>            
             {weather ? (
                 <>
-                    <h5>Clima nas suas Coordenadas ({weather['weather'][0]['description']})</h5>                    
-                    <ul className="list-group">
-                        <li className="list-group-item"><mark>Cidade:</mark> {weather['name']}</li>
-                        <li className="list-group-item"><mark>Temperatura atual:</mark> {weather['main']['temp']}°</li>
-                        <li className="list-group-item"><mark>Temperatura máxima:</mark> {weather['main']['temp_max']}°</li>
-                        <li className="list-group-item"><mark>Temperatura minima:</mark> {weather['main']['temp_min']}°</li>
-                        <li className="list-group-item"><mark>Pressão:</mark> {weather['main']['pressure']} hpa</li>
-                        <li className="list-group-item"><mark>Humidade:</mark> {weather['main']['humidity']}%</li>
-                        <li className="list-group-item"><mark>Vento:</mark> {weather['wind']['deg']}° e velocidade {weather['wind']['speed']}</li>
-                        <li className="list-group-item"><mark>Latitude:</mark> {location.latitude}</li>
-                        <li className="list-group-item"><mark>Longitude:</mark> {location.longitude}</li>                        
+                    <div className="title has-text-centered">
+                        <h1>Clima: ({weather['weather'][0]['description']})</h1>                    
+                    </div>
+                    <ul className="list">
+                        <li className="list-item">Cidade: {weather['name']}</li>
+                        <li className="list-item">Temperatura atual: {weather['main']['temp']}°</li>
+                        <li className="list-item">Temperatura máxima: {weather['main']['temp_max']}°</li>
+                        <li className="list-item">Temperatura minima: {weather['main']['temp_min']}°</li>
+                        <li className="list-item">Pressão: {weather['main']['pressure']} hpa</li>
+                        <li className="list-item">Humidade: {weather['main']['humidity']}%</li>
+                        <li className="list-item">Vento: {weather['wind']['deg']}° e velocidade {weather['wind']['speed']}</li>
+                        <li className="list-item">Latitude: {location.latitude}</li>
+                        <li className="list-item">Longitude: {location.longitude}</li>                        
                     </ul>            
                 </>
             ):(

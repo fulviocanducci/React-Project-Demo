@@ -3,7 +3,7 @@ import React from 'react';
 export default function Header({title}) {
     return (
         <>
-            <h3>{title}</h3>
+            <h1 className="title">{title}</h1>
             <hr />
         </>
     )

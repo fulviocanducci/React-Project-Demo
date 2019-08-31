@@ -4,7 +4,6 @@ import NavBar from './NavBar';
 import Loading from './Loading';
 import Layout from './Layout';
 import Header from './Header';
-import Footer from './Footer';
 import Input from './Input';
 
 export {
@@ -14,6 +13,5 @@ export {
     Loading,
     Layout,
     Header,
-    Footer,
     Input
 };

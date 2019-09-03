@@ -15,7 +15,7 @@ export default function Login({history}) {
     function handleSubmitForm(e) {        
         e.preventDefault();       
         setLoading(true);         
-        axios.post('https://api-todo-sqlite.herokuapp.com/login', {email, password})
+        axios.post('https://api-todo-sqlite.herokuapp.com/api/login', {email, password})
         .then(result => {            
             const decode = jwtDecode(result.data.token);
             const {iat, exp} = decode;

@@ -3,17 +3,23 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
 import { Input } from './layout';
-import { storageSetJSON, dateCalculate, storageGetJSON, storageDelete } from './utils';
+import { storageSetJSON, dateCalculate, storageGetJSON, storageDelete, isEmail } from './utils';
 
-export default function Login({history}) {    
-    const [email, setEmail] = useState('teste@teste.com');
-    const [password, setPassword] = useState('1234560');   
+export default function Login({history}) {     
+    const [email, setEmail] = useState(''); //'teste@teste.com'
+    const [password, setPassword] = useState(''); // '1234560'   
     const [login, setLogin] = useState(storageGetJSON('login'));
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState(false);
-
-    function handleSubmitForm(e) {        
-        e.preventDefault();       
+    const [validator, setValidator] = useState(false);
+    function handleSubmitForm(e) {         
+        e.preventDefault(); 
+        if (email === '' || password === '' || !isEmail(email)) {
+            setValidator(true);
+            return;
+        } else {
+            setValidator(false);
+        }
         setLoading(true);         
         axios.post('https://api-todo-sqlite.herokuapp.com/api/login', {email, password})
         .then(result => {            
@@ -28,7 +34,7 @@ export default function Login({history}) {
         .catch(error => {
             setLoading(false);
             setErrors(true);
-        });
+        });        
     }
 
     function redirectToTarget() {
@@ -44,11 +50,27 @@ export default function Login({history}) {
         setErrors(false);
     }
 
+    function handleValidatorOff() {
+        setValidator(false);
+    }
+
+    function notification() {
+        return (
+            <div className="notification is-danger">  
+                <button className="delete" onClick={handleValidatorOff}></button>              
+                <ul>
+                    <li>E-mail required</li>
+                    <li>Password required</li>
+                </ul>
+            </div>
+        )
+    }
     return ( 
         <>
+        {validator? (notification()):(null)}        
         {login ? (
         <>
-            <div className="title">
+            <div className="title">                
                 Logado                
             </div>
             <div>
@@ -63,8 +85,8 @@ export default function Login({history}) {
                 </div>
             ): null}
             <form method="post" id="frmLogin" name="frmLogin">
-                <Input change={(e) => setEmail(e.target.value)} type="text" id="email" value={email} placeholder="E-mail user" label="Email:" />
-                <Input change={(e) => setPassword(e.target.value)} type="password" id="password" value={password} placeholder="Password user" label="Password:" />
+                <Input change={(e) => setEmail(e.target.value)} name="email" type="text" id="email" value={email} placeholder="E-mail user" label="Email:" />                
+                <Input change={(e) => setPassword(e.target.value)} name="password" type="password" id="password" value={password} placeholder="Password user" label="Password:" />                
                 <button onClick={handleSubmitForm} className={loading?'button is-primary is-loading':'button is-primary'}>Login</button>
             </form>
         </> )}        

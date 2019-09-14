@@ -5,6 +5,7 @@ import Loading from './Loading';
 import Layout from './Layout';
 import Header from './Header';
 import Input from './Input';
+import InputError from './InputError';
 
 export {
     Menus, 
@@ -13,5 +14,6 @@ export {
     Loading,
     Layout,
     Header,
-    Input
+    Input,
+    InputError
 };
